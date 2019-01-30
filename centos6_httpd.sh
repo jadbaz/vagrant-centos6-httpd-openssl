@@ -1,7 +1,7 @@
 HTTPD_VERSION=2.4.38
 APR_VERSION=1.6.5
 APR_UTIL_VERSION=1.6.1
-OPENSSL_DIR=/usr/local/ssl
+OPENSSL_DIR=$(d=`pwd`; cd $(dirname $(readlink -f $(which openssl))); cd ..; pwd; cd $d)
 APACHE_DIR=/usr/local/apache2 # (default)
 
 # http://httpd.apache.org/docs/2.4/install.html
@@ -25,7 +25,7 @@ tar -xzf apr-util-${APR_UTIL_VERSION}.tar.gz
 cp -R apr-util-${APR_UTIL_VERSION} httpd-${HTTPD_VERSION}/srclib/apr-util
 
 cd /usr/src/httpd-${HTTPD_VERSION}
-time ./configure --enable-so --with-included-apr --with-included-apr-util --enable-ssl --with-ssl=${OPENSSL_DIR}
+time ./configure --prefix $APACHE_DIR --enable-so --with-included-apr --with-included-apr-util --enable-ssl --with-ssl=${OPENSSL_DIR}
 time make
 time make install
 
