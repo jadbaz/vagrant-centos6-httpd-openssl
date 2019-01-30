@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
         end
         
         # https://oddessay.com/development-notes/changing-vagrants-default-ssh-port-to-prevent-collision-when-resuming-a-suspended-instance
-        machine.vm.network "forwarded_port", guest: 22, host: 2225, id: "ssh"
+        # machine.vm.network "forwarded_port", guest: 22, host: 2225, id: "ssh"
         machine.vm.network "forwarded_port", guest: 80, host: 10080, id: "http"
         machine.vm.network "forwarded_port", guest: 443, host: 10443, id: "https"
 
